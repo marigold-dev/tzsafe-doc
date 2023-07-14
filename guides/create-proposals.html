@@ -1,0 +1,272 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Create Proposals - TzSafe User Manual</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../marigold-docs-theme/marigold.css">
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../guides/create-new-wallets.html"><strong aria-hidden="true">1.1.</strong> Create new wallets</a></li><li class="chapter-item expanded "><a href="../guides/import-wallets.html"><strong aria-hidden="true">1.2.</strong> Import wallets</a></li><li class="chapter-item expanded "><a href="../guides/fund-wallet.html"><strong aria-hidden="true">1.3.</strong> Fund wallet</a></li><li class="chapter-item expanded "><a href="../guides/create-proposals.html" class="active"><strong aria-hidden="true">1.4.</strong> Create Proposals</a></li><li class="chapter-item expanded "><a href="../guides/sign-reject-and-resolve-proposals.html"><strong aria-hidden="true">1.5.</strong> Sign, Reject and Resolve Proposals</a></li><li class="chapter-item expanded "><a href="../guides/setting.html"><strong aria-hidden="true">1.6.</strong> Setting</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">TzSafe User Manual</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/marigold-dev/tezos-doc" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="create-proposals"><a class="header" href="#create-proposals">Create Proposals</a></h1>
+<p>The big difference from the Tezos account, or so-called single-signature account, is that</p>
+<ul>
+<li>The process of creating a proposal is mandatory for every transaction made from the TzSafe wallet.</li>
+<li>batch transactions are allowed in TzSafe wallet.</li>
+</ul>
+<p>TzSafe supports the following types of transaction at the moment, with more to be added in the near future.</p>
+<p>Notice that creating a proposal without any transaction is forbidden.</p>
+<h2 id="supported-transaction"><a class="header" href="#supported-transaction">Supported Transaction <a href="#a5cb9fb8-9973-4df8-8989-a4ba408d59f3" id="a5cb9fb8-9973-4df8-8989-a4ba408d59f3"></a></a></h2>
+<h3 id="xtz-transfer"><a class="header" href="#xtz-transfer">XTZ <strong>Transfer</strong> <a href="#1aa35605-14f1-4b72-99d8-f00991851324" id="1aa35605-14f1-4b72-99d8-f00991851324"></a></a></h3>
+<p>This transaction allows us to transfer XTZ to the target account, including all <code>tz</code> accounts and <code>KT</code> accounts, which have a <code>%defaut</code> entrypoint with <code>unit</code> type.</p>
+<p>First, click <code>New Proposal</code> on the sidebar. Then, click <code>Transfer</code>. Filling in the amount and the target address on UI. Before submitting, please double-check the address and transfer amount. Finally, click <code>Submit</code> to create our new proposal.</p>
+<figure><img src="../assets/image (42).png" alt=""><figcaption></figcaption></figure>
+<p>Note that TzSafe doesn’t validate transferring amount is equal to or greater than the balance while the proposal is being created. The validation only happens when the proposal is executed. In other words, it's possible to fund an insufficient wallet before the proposal is executed.</p>
+<h3 id="fa12-approve"><a class="header" href="#fa12-approve">FA1.2 Approve</a></h3>
+<p>TzSafe provides support for approvals of FA1.2 tokens, allowing users to authorize the spending of tokens. </p>
+<p>To create a new proposal, navigate to the sidebar and click on <code>New Proposal</code>. From there, select the option for <code>FA1.2 Approve</code>.  To grant approval, fill in the desired token and amount and the spender's address. Once the information is filled out, click the `Submit` button to complete the approval proposal.</p>
+<figure><img src="../assets/image (23).png" alt=""><figcaption></figcaption></figure>
+<h3 id="fa12-transfer"><a class="header" href="#fa12-transfer">FA1.2 Transfer</a></h3>
+<p>TzSafe also offers the capability to perform transfers for FA1.2 tokens. To create a new proposal, simply access the sidebar and click on <code>New Proposal</code>. Then, select the <code>FA1.2 Transfer</code> option from the available choices. Select the desired token, specify the amount, and provide the transfer-to address. Finally, click <code>Submit</code> to click a proposal.</p>
+<figure><img src="../assets/image (55).png" alt=""><figcaption></figcaption></figure>
+<h3 id="fa2-transfer"><a class="header" href="#fa2-transfer"><strong>FA2 Transfer</strong></a></h3>
+<p>TzSafe also provides support for transferring FA2 tokens. Currently, it allows for the transfer of multiple tokens within a single transaction, but with the restriction that all tokens must belong to the same FA2 contract. In cases where the FA2 tokens are spread across different contracts, it becomes necessary to create separate transactions for each contract involved.</p>
+<p>To create a new proposal, navigate to the sidebar and click on <code>New Proposal</code>. From there, select the option for <code>FA2 Transfer</code>. Choose an FA2 token and specify the desired amount and the recipient's address. When adding a second token, please note that it must belong to the same FA2 contract as the first token. Finally, click the <code>Submit</code> button to create your new proposal.</p>
+<figure><img src="../assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<h3 id="contract-execution"><a class="header" href="#contract-execution"><strong>Contract Execution</strong></a></h3>
+<p>Contract execution allows us to create a proposal to execute arbitrary Tezos contracts. Besides <code>FA2 Transfer</code>, we can also use <code>Contract Execution</code> to perform a transfer. </p>
+<p>Taking an FA2 contract as an example, click <code>New Proposal</code> on the sidebar and select <code>Contract Execution</code>. Next, fill in a target address and the amount sent to the address. In this case, we fill FA2 address, <code>KT1Gh6T9CjpxEV6WxCzgExhrATEYtcLN5Fdp</code>, and amount 0.</p>
+<figure><img src="../assets/image (19).png" alt=""><figcaption></figcaption></figure>
+<p>After click <code>Continue</code>, TzSafe will check if the contract of the given address exists. If so, we can see the contract parameters rendered on the page, as the following shows.</p>
+<figure><img src="../assets/image (25).png" alt=""><figcaption></figcaption></figure>
+<p>To transfer FA2 tokens, we select the entrypoint <code>transfer</code> and click <code>Add item</code> to fill in the details. Finally, click the <code>Submit</code> button to create a new proposal. As the same as the transaction of transferring XTZ, an insufficient amount can be funded after proposal creation is done.</p>
+<h3 id="batch"><a class="header" href="#batch"><strong>Batch</strong></a></h3>
+<p>Sometimes we want to perform several transactions at the same time. In TzSafe, we can achieve it by using batch. A batch of transactions is <em>atomic</em>, which means any one of the transactions in one batch fails, all transactions fail.</p>
+<p>This is useful when we want to <em>exchange</em> assets with others. For example, if we want to buy the NFT of Alice in 5XTZ, we will make two transactions as a batch. First, transfer 5XTZ to Alics. Second, call Alice’s contract to transfer NFT. We may want to have a third transaction to ensure NFT is in your name. Therefore, we can safely make a swap.</p>
+<p>The following is the figure showing a batch. Users can click any type of transaction to add it and click <code>Submit</code> all transactions at once. It is important to note that the indexes indicate the order in which the transactions will be executed.</p>
+<figure><img src="../assets/image (10).png" alt=""><figcaption></figcaption></figure>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../guides/fund-wallet.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../guides/sign-reject-and-resolve-proposals.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../guides/fund-wallet.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../guides/sign-reject-and-resolve-proposals.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+        <script>
+            window.playground_line_numbers = true;
+        </script>
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+        <script src="../ace.js"></script>
+        <script src="../editor.js"></script>
+        <script src="../mode-rust.js"></script>
+        <script src="../theme-dawn.js"></script>
+        <script src="../theme-tomorrow_night.js"></script>
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../marigold-docs-theme/marigold.js"></script>
+
+
+    </div>
+    </body>
+</html>
