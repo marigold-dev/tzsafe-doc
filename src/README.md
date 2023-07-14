@@ -1,4 +1,4 @@
-# 📪 TzSafe
+# Welcome to TzSafe
 
 TzSafe offers a user-friendly platform for creating and managing multisig wallets. We prioritize the privacy of our users by not storing any of their private data. Information such as Tezos address aliases and regularly used wallets are exclusively stored locally in the user's browser.
 
