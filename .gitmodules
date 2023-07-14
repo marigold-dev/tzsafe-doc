@@ -1,0 +1,3 @@
+[submodule "marigold-docs-theme"]
+	path = marigold-docs-theme
+	url = git@github.com:marigold-dev/marigold-docs-theme.git
