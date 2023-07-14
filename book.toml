@@ -3,12 +3,12 @@ authors = ["Marigold.dev"]
 language = "en"
 multilingual = false
 src = "src"
-title = "TzSafe Documentation"
+title = "TzSafe User Manual"
 
 [output.html]
 mathjax-support = true
-additional-css = ["theme/marigold.css"]
-additional-js = ["theme/marigold.js"]
+additional-css = ["marigold-docs-theme/marigold.css"]
+additional-js = ["marigold-docs-theme/marigold.js"]
 git-repository-url = "https://github.com/marigold-dev/tezos-doc"
 
 [output.html.playground]
