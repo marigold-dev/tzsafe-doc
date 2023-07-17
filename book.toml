@@ -9,7 +9,7 @@ title = "TzSafe User Manual"
 mathjax-support = true
 additional-css = ["marigold-docs-theme/marigold.css"]
 additional-js = ["marigold-docs-theme/marigold.js"]
-git-repository-url = "https://github.com/marigold-dev/tezos-doc"
+git-repository-url = "https://github.com/marigold-dev/tzsafe"
 
 [output.html.playground]
 editable = true
