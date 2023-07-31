@@ -1,10 +1,13 @@
 # Create new wallets
 
+
 The first time we go to the website, we shall see two options in the center, `New Wallet` and `Import Wallet`, as the figure shows.
 
 <figure><img src="../assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
-Let’s click `New Wallet` to create our first blankly new multisig wallet! Before we start the creation process, it’s required to log in to our Tezos account. The purpose of login is to make Tezos operations, such as contract origination, transaction, etc. In this case, we are going to originate a TzSafe contract later.
+Notice that upon logging into TzSafe on new devices, users will find that their TzSafe wallets do not automatically load. To access their wallets on the new device, users must load them manually through the import function. Please see [here](import-wallets.md) for importing our wallets.
+
+Let’s click `New Wallet` to create our first blankly new multisig wallet! Before we start the creation process, it’s required to log in to our Tezos account. The purpose of login is to make Tezos operations, such as contract origination, transaction, etc. In this case, we arergoing to originate a TzSafe contract later.
 
 <figure><img src="../assets/image (54).png" alt=""><figcaption></figcaption></figure>
 
