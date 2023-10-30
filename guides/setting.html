@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -10,7 +10,7 @@
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="../favicon.svg">
         <link rel="shortcut icon" href="../favicon.png">
@@ -34,7 +34,7 @@
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -64,29 +64,34 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../guides/create-new-wallets.html"><strong aria-hidden="true">1.1.</strong> Create new wallets</a></li><li class="chapter-item expanded "><a href="../guides/import-wallets.html"><strong aria-hidden="true">1.2.</strong> Import wallets</a></li><li class="chapter-item expanded "><a href="../guides/fund-wallet.html"><strong aria-hidden="true">1.3.</strong> Fund wallet</a></li><li class="chapter-item expanded "><a href="../guides/create-proposals.html"><strong aria-hidden="true">1.4.</strong> Create Proposals</a></li><li class="chapter-item expanded "><a href="../guides/sign-reject-and-resolve-proposals.html"><strong aria-hidden="true">1.5.</strong> Sign, Reject and Resolve Proposals</a></li><li class="chapter-item expanded "><a href="../guides/setting.html" class="active"><strong aria-hidden="true">1.6.</strong> Setting</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../guides/create-new-wallets.html"><strong aria-hidden="true">1.1.</strong> Create new wallets</a></li><li class="chapter-item expanded "><a href="../guides/import-wallets.html"><strong aria-hidden="true">1.2.</strong> Import wallets</a></li><li class="chapter-item expanded "><a href="../guides/fund-wallet.html"><strong aria-hidden="true">1.3.</strong> Fund wallet</a></li><li class="chapter-item expanded "><a href="../guides/create-proposals.html"><strong aria-hidden="true">1.4.</strong> Create Proposals</a></li><li class="chapter-item expanded "><a href="../guides/sign-reject-and-resolve-proposals.html"><strong aria-hidden="true">1.5.</strong> Sign, Reject and Resolve Proposals</a></li><li class="chapter-item expanded "><a href="../guides/setting.html" class="active"><strong aria-hidden="true">1.6.</strong> Setting</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Developer DOC</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../guides/understand-entrypoint-and-proof-of-tzsafe.html"><strong aria-hidden="true">2.1.</strong> Understand the Entrypoint and the Proof</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -119,9 +124,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -192,6 +197,9 @@
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
+                            <a rel="next prefetch" href="../guides/understand-entrypoint-and-proof-of-tzsafe.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -203,6 +211,9 @@
                         <i class="fa fa-angle-left"></i>
                     </a>
 
+                    <a rel="next prefetch" href="../guides/understand-entrypoint-and-proof-of-tzsafe.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
