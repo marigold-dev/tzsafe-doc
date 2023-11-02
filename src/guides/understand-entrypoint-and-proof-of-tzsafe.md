@@ -2,16 +2,18 @@
 
 TzSafe, a multisig wallet, is created using a smart contract. The TzSafe application, [TzSafe UI](https://tzsafe.marigold.dev), offers a user-friendly interface for interacting with wallets. If users wish to develop their own smart contract to interact with TzSafe, understanding the entrypoints of the wallets is crucial. This section will introduce the entrypoints of TzSafe in different versions. We'll use Better-Call Dev as an example to demonstrate.
 
-To determine the version of TzSafe, there are two ways:
+To determine the version of TzSafes:
 
 - Within the TzSafe application, you can find the version information as follows:
 
 ![](../assets/image-70.png)
 
-- The version information follows TZIP-16 specifications and is stored in the metadata within the contract storage.
+## Version ≥0.3.x
+- Beginning with version 0.3.0, wallets can generate proof.
+- Beginning with version 0.3.0, wallets will free up storage space upon the resolution of proposals, leading to savings on storage fees for subsequent proposal creations. Please be aware of security issue: the newly added entrypoint for updating metadata does not check ownership, which means that anyone can modify the wallet's metadata.
+- Beginning with version 0.3.2, wallets now support two new types of proposals: `add_or_update_metadata` and `remove_metadata`. Please note that this support is available only in the contract, not in the TzSafe UI.
 
-## Version ≥0.3.1
-
+### Version 0.3.2
 To align with TZIP-27, TzSafe team offers several proposed models for integration. For more detailed information, please refer to [this link](https://forum.tezosagora.org/t/tzsafe-and-proof-of-event-with-demos/5672). We have chosen to implement the "PoE as an executed action" model, and we will maintain the usage of the term "actions" as a way to distinguish them from Tezos' standard transactions.
 
 💡 Transactions approved through the owners' consensus are referred to as "actions" to differentiate the term from Tezos' standard transactions.
@@ -42,8 +44,8 @@ This event includes two pieces of information that we'll need them to sign and r
 
 - **`challenge_id`**: This represents a unique ID for each proposal, presented in bytes. With each new proposal, the ID increases by one.
 - **`payload`**: This contains the proposal's content but is encoded in Michelson's **`pack`**. If we  **`unpack`** the payload, it should match the input parameter. However, typically, there's no need to **`unpack`**. If the need does arise, we must specify the type, which can be found either:
-    - [here](https://github.com/marigold-dev/tzsafe-ui/blob/e9f6dcefc2e08135b9df8b4877c3724181c6d6de/types/Proposal0_3_1.ts#L164) in JSON format.
-    - [here](https://github.com/marigold-dev/tzsafe/blob/ae7c7a4785d7af672e0a46ff2de1b4d7f2fcef79/src/internal/proposal_content.mligo#L19) in the camligo. Please note that you need to include this type in the list, as illustrated in the example below.
+    - [here](https://github.com/marigold-dev/tzsafe-ui/blob/v0.38.0/types/Proposal0_3_1.ts#L164) in JSON format.
+    - [here](https://github.com/marigold-dev/tzsafe/blob/0.3.2/src/internal/proposal_content.mligo#L19) in the camligo. Please note that you need to include this type in the list, as illustrated in the example below.
 
 Here's an example of using **`unpack`** in the camligo:
 
@@ -94,8 +96,8 @@ When this entrypoint is successfully executed, two events are emitted:
 
 1. An event with the tag **`%resolve_proposal`** shows the simple result of the proposal, including whether it was `executed`, `rejected`, or `expired`. In most cases, this information is sufficient.
 2. The other event, tagged as **`%proof_of_event`**, serves as *the proof of event* for TZIP-27. This proof contains a pair of **`challenge_id`** and **`payload`**. The payload is encoded in Michelson's **`pack`** . If we perform **`unpack`**, we can access the details of the proposal, including signers, resolvers, contents, and more. The type for **`unpack`** can be found:
-    - [here](https://github.com/marigold-dev/tzsafe-ui/blob/e9f6dcefc2e08135b9df8b4877c3724181c6d6de/types/Proposal0_3_1.ts#L42) in JSON format.
-    - [here](https://github.com/marigold-dev/tzsafe/blob/ae7c7a4785d7af672e0a46ff2de1b4d7f2fcef79/src/internal/storage.mligo#L38) in the camligo.
+    - [here](https://github.com/marigold-dev/tzsafe-ui/blob/v0.38.0/types/Proposal0_3_1.ts#L42) in JSON format.
+    - [here](https://github.com/marigold-dev/tzsafe/blob/0.3.2/src/internal/storage.mligo#L38) in the camligo.
 
 ![](../assets/image-79.png)
 
@@ -123,7 +125,23 @@ Everything at the top-level was executed.
 
 ```
 
-Both users and DApps can track the new actions of TzSafe without being inconvenienced by internal TzSafe operations by monitoring the events **`%proof_of_event`** or **`%resolve_proposal`** tags. We can utilize APIs provided by TZKT or Taquito to assist us in this regard.
+Both users and DApps can track the new actions of TzSafe without being inconvenienced by internal TzSafe operations by monitoring the events **`%proof_of_event`** or **`%resolve_proposal`** tags. We can utilize APIs provided by TZKT or Taquito to assist us in this regard. Please note that if the proof is intended for any purpose, it is crucial to verify the proof as the initial step. In the TzSafe design, each operation containing the proposal resolution will also have only one associated proof.
+
+### Version 0.3.1
+
+Please pay attention to a security concern: the newly introduced entrypoint for updating metadata in the contract storage, following TZIP-16, does not verify ownership, enabling anyone to modify the wallet's metadata. It's important to note that this issue does not affect the other TzSafe functions, nor the TzSafe UI. Individuals concerned about this issue should consider migrating to at least version 0.3.2.
+
+The following are the types needed if one wants to access the details of the bytes produced by the wallet.
+- the type of proposals:
+    - in [JSON](https://github.com/marigold-dev/tzsafe-ui/blob/v0.37.0/types/Proposal0_3_1.ts#L164) format.
+    - in the [camligo](https://github.com/marigold-dev/tzsafe/blob/0.3.1/src/internal/proposal_content.mligo#L19). Please note that you need to include this type in the list.
+
+- the type of proof:
+    - in [JSON](https://github.com/marigold-dev/tzsafe-ui/blob/v0.37.0/types/Proposal0_3_1.ts#L42) format.
+    - in the [camligo](https://github.com/marigold-dev/tzsafe/blob/0.3.1/src/internal/storage.mligo#L38).
+
+### Version 0.3.0
+Version 0.3.0 supports generating proof but does not support saving storage fees. This version is exclusively available on the ghostnet.
 
 ## Version ≤ 0.1
 
