@@ -7,7 +7,7 @@ To build content
 > mdbook build
 
 To watch
-> mdbook watch book
+> mdbook watch
 
 To serve
-> mdbook serve book -p 8000
+> mdbook serve -p 8000
