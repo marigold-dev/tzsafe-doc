@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Sign, Reject and Resolve Proposals - TzSafe User Manual</title>
+        <title>Login using TzSafe app - TzSafe User Manual</title>
 
 
         <!-- Custom HTML head -->
@@ -91,7 +91,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../guides/create-new-wallets.html"><strong aria-hidden="true">1.1.</strong> Create new wallets</a></li><li class="chapter-item expanded "><a href="../guides/import-wallets.html"><strong aria-hidden="true">1.2.</strong> Import wallets</a></li><li class="chapter-item expanded "><a href="../guides/fund-wallet.html"><strong aria-hidden="true">1.3.</strong> Fund wallet</a></li><li class="chapter-item expanded "><a href="../guides/create-proposals.html"><strong aria-hidden="true">1.4.</strong> Create Proposals</a></li><li class="chapter-item expanded "><a href="../guides/sign-reject-and-resolve-proposals.html" class="active"><strong aria-hidden="true">1.5.</strong> Sign, Reject and Resolve Proposals</a></li><li class="chapter-item expanded "><a href="../guides/setting.html"><strong aria-hidden="true">1.6.</strong> Setting</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Developer DOC</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../guides/understand-entrypoint.html"><strong aria-hidden="true">2.1.</strong> Understand the Entrypoint</a></li><li class="chapter-item expanded "><a href="../guides/login-using-tzsafe-app.html"><strong aria-hidden="true">2.2.</strong> Login using TzSafe app</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../guides/create-new-wallets.html"><strong aria-hidden="true">1.1.</strong> Create new wallets</a></li><li class="chapter-item expanded "><a href="../guides/import-wallets.html"><strong aria-hidden="true">1.2.</strong> Import wallets</a></li><li class="chapter-item expanded "><a href="../guides/fund-wallet.html"><strong aria-hidden="true">1.3.</strong> Fund wallet</a></li><li class="chapter-item expanded "><a href="../guides/create-proposals.html"><strong aria-hidden="true">1.4.</strong> Create Proposals</a></li><li class="chapter-item expanded "><a href="../guides/sign-reject-and-resolve-proposals.html"><strong aria-hidden="true">1.5.</strong> Sign, Reject and Resolve Proposals</a></li><li class="chapter-item expanded "><a href="../guides/setting.html"><strong aria-hidden="true">1.6.</strong> Setting</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Developer DOC</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../guides/understand-entrypoint.html"><strong aria-hidden="true">2.1.</strong> Understand the Entrypoint</a></li><li class="chapter-item expanded "><a href="../guides/login-using-tzsafe-app.html" class="active"><strong aria-hidden="true">2.2.</strong> Login using TzSafe app</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -179,57 +179,28 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="sign-reject-and-resolve-proposals"><a class="header" href="#sign-reject-and-resolve-proposals">Sign, Reject and Resolve Proposals</a></h1>
-<p>After proposals have been created, their state will represent it on the proposals page sorting by creating time, as the figure shows. Users can click them to see more details. </p>
-<figure><img src="../assets/image (59).png" alt=""><figcaption></figcaption></figure>
-<p>We can also interact with the proposals by signing, rejecting, or resolving them based on the conditions of the proposals.</p>
-<ul>
-<li>Signing proposals means owners give their approvals</li>
-<li>Rejecting proposals means owners disagree with the proposals.</li>
-<li>Resolving proposals means owners can
-<ul>
-<li>execute and archive the proposals if acquiring sufficient approvals.</li>
-<li>archive the proposals if the proposals exceed their duration</li>
-<li>archive the proposals if the proposals are rejected by most of the owners so they can’t pass the threshold to execute.</li>
-</ul>
-</li>
-</ul>
-<p>It’s possible to sign (or reject) and resolve at the same time If some conditions are satisfied. After proposals are resolved successfully, they will be archived and presented on the history page. Notice that only the owners of the wallet are permitted to interact with it.</p>
-<p>The following is using a 2-of-2 TzSafe wallet as an example.</p>
-<h3 id="case-sign-and-resolve-proposal-1"><a class="header" href="#case-sign-and-resolve-proposal-1">Case: Sign and Resolve Proposal 1 <a href="#4aa78d07-9469-4fbe-9ad8-ca0556852e43" id="4aa78d07-9469-4fbe-9ad8-ca0556852e43"></a></a></h3>
-<p>For the whole new proposal, we shall see two buttons for rejecting and signing as above picture. When clicking either button, we shall see a pop-up window for confirming the action as below figure. Clicking Confirm will process the sign action in this case.</p>
-<figure><img src="../assets/image (58).png" alt=""><figcaption></figcaption></figure>
-<p>The stats of the proposal will change to <code>Waiting for signers</code>, which means it is pending another owner’s action.</p>
-<figure><img src="../assets/image (21).png" alt=""><figcaption></figcaption></figure>
-<p>Once the proposal accumulates sufficient approvals, we may see a resolve button there. By clicking it, the window will pop up and ask for confirmation.</p>
-<figure><img src="../assets/image (34).png" alt=""><figcaption></figcaption></figure>
-<p>We can double-check the proposal and then click <code>Confirm</code>. The proposal should be resolved, executed, and archived on the history page.</p>
-<figure><img src="../assets/image (46).png" alt=""><figcaption></figcaption></figure>
-<h3 id="case-sign-and-resolve-proposal-2"><a class="header" href="#case-sign-and-resolve-proposal-2">Case: Sign and Resolve Proposal 2 <a href="#abeceeda-381c-46e0-980b-eb8a0323a014" id="abeceeda-381c-46e0-980b-eb8a0323a014"></a></a></h3>
-<p>The below figure is another example, if looking at the details of proposal 2, another approval is already there. In this case, we can try to sign and resolve the proposal at the same time. First, we click <code>Sign</code>.</p>
-<figure><img src="../assets/image (8).png" alt=""><figcaption></figcaption></figure>
-<p>We should see the trying to resolve option represented on the popped-up windows. We select “yes” and click <code>Confirm</code> to resolve the proposal.</p>
-<figure><img src="../assets/image (28).png" alt=""><figcaption></figcaption></figure>
-<h3 id="case-fail-to-resolve-proposal"><a class="header" href="#case-fail-to-resolve-proposal">Case: Fail to Resolve Proposal <a href="#544a2e9e-4625-4305-ad56-39bc95ac8f94" id="544a2e9e-4625-4305-ad56-39bc95ac8f94"></a></a></h3>
-<p>Sometimes, proposals may be not successfully resolved. For example, the following proposal proposes to transfer an amount that is more than the wallet has. Therefore, if we are trying to resolve the proposal, which can’t be actually resolved, the failed message will be present after clicking <code>Confirm</code>.</p>
-<figure><img src="../assets/image (31).png" alt=""><figcaption></figcaption></figure>
-<figure><img src="../assets/image (27).png" alt=""><figcaption></figcaption></figure>
-<p>The error will show as above. We can see more detail there. In this case, the error results from insufficient balance. Either owner can fund more money into the wallet, or reject the proposal.</p>
-<h3 id="case-resolve-expired-proposal"><a class="header" href="#case-resolve-expired-proposal">Case: Resolve Expired Proposal <a href="#c19b6f64-f1b9-40e8-aadd-088b9eb8883b" id="c19b6f64-f1b9-40e8-aadd-088b9eb8883b"></a></a></h3>
-<p>If none of the owners resolve proposals within the proposal duration, the state of the proposals will become expired. Any owners can click resolved to archive the proposals.</p>
-<figure><img src="../assets/image (20).png" alt=""><figcaption></figcaption></figure>
+                        <h1 id="logging-in-using-tzsafe-app"><a class="header" href="#logging-in-using-tzsafe-app">Logging in Using TzSafe App</a></h1>
+<p><img src="../assets/image-80.png" alt="" /></p>
+<p>As of now, the configuration for the TzSafe app hasn't been committed to the beacon-sdk repository. For those who want to quickly try interacting with the TzSafe app through a dApp, please follow these steps:</p>
+<pre><code class="language-bash">&gt; git clone git@github.com:marigold-dev/beacon-sdk.git
+&gt; npm i
+&gt; python -m http.server --directory ./examples
+</code></pre>
+<ol>
+<li>Open your browser.</li>
+<li>Go to the Example Dapp: http://localhost:8000/dapp.html.</li>
+<li>Click on &quot;Request Permission.&quot;</li>
+<li>Select &quot;TzSafe&quot; and enjoy!</li>
+</ol>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../guides/create-proposals.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../guides/understand-entrypoint.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../guides/setting.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -237,13 +208,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../guides/create-proposals.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../guides/understand-entrypoint.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../guides/setting.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>

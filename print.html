@@ -92,7 +92,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="guides/create-new-wallets.html"><strong aria-hidden="true">1.1.</strong> Create new wallets</a></li><li class="chapter-item expanded "><a href="guides/import-wallets.html"><strong aria-hidden="true">1.2.</strong> Import wallets</a></li><li class="chapter-item expanded "><a href="guides/fund-wallet.html"><strong aria-hidden="true">1.3.</strong> Fund wallet</a></li><li class="chapter-item expanded "><a href="guides/create-proposals.html"><strong aria-hidden="true">1.4.</strong> Create Proposals</a></li><li class="chapter-item expanded "><a href="guides/sign-reject-and-resolve-proposals.html"><strong aria-hidden="true">1.5.</strong> Sign, Reject and Resolve Proposals</a></li><li class="chapter-item expanded "><a href="guides/setting.html"><strong aria-hidden="true">1.6.</strong> Setting</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Developer DOC</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="guides/understand-entrypoint-and-proof-of-tzsafe.html"><strong aria-hidden="true">2.1.</strong> Understand the Entrypoint and the Proof</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="guides/create-new-wallets.html"><strong aria-hidden="true">1.1.</strong> Create new wallets</a></li><li class="chapter-item expanded "><a href="guides/import-wallets.html"><strong aria-hidden="true">1.2.</strong> Import wallets</a></li><li class="chapter-item expanded "><a href="guides/fund-wallet.html"><strong aria-hidden="true">1.3.</strong> Fund wallet</a></li><li class="chapter-item expanded "><a href="guides/create-proposals.html"><strong aria-hidden="true">1.4.</strong> Create Proposals</a></li><li class="chapter-item expanded "><a href="guides/sign-reject-and-resolve-proposals.html"><strong aria-hidden="true">1.5.</strong> Sign, Reject and Resolve Proposals</a></li><li class="chapter-item expanded "><a href="guides/setting.html"><strong aria-hidden="true">1.6.</strong> Setting</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Developer DOC</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="guides/understand-entrypoint.html"><strong aria-hidden="true">2.1.</strong> Understand the Entrypoint</a></li><li class="chapter-item expanded "><a href="guides/login-using-tzsafe-app.html"><strong aria-hidden="true">2.2.</strong> Login using TzSafe app</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -340,9 +340,11 @@
 </ul>
 <h3 id="version-033"><a class="header" href="#version-033">Version 0.3.3</a></h3>
 <p>Beginning with this version, entrypoint parameters are self-explanatory, enabling users to easily interact wth Better-Call Dev.</p>
-<p>Once creating the proposal, users can find the proposal ID in an emitted event with the tag <strong><code>%create_proposal</code></strong>. This ID can be used for signing and resolving the proposal. Upon resolution, the proposal is removed from the contract storage. Users can retrieve the full history from the emitted event with the tag <strong><code>%archive_proposal</code></strong>, and the event's content is in bytes. Here is the type for unpacking it.
-- <a href="https://github.com/marigold-dev/tzsafe-ui/blob/v0.42.0-rc.0/types/Proposal0_3_3.ts#L44">here</a> in JSON format.
-- <a href="https://github.com/marigold-dev/tzsafe/blob/0.3.3/src/internal/storage.mligo#L38">here</a> in the camligo.</p>
+<p>Once creating the proposal, users can find the proposal ID in an emitted event with the tag <strong><code>%create_proposal</code></strong>. This ID can be used for signing and resolving the proposal. Upon resolution, the proposal is removed from the contract storage. Users can retrieve the full history from the emitted event with the tag <strong><code>%archive_proposal</code></strong>, and the event's content is in bytes. Here is the type for unpacking it.</p>
+<ul>
+<li><a href="https://github.com/marigold-dev/tzsafe-ui/blob/v0.42.0-rc.0/types/Proposal0_3_3.ts#L44">here</a> in JSON format.</li>
+<li><a href="https://github.com/marigold-dev/tzsafe/blob/0.3.3/src/internal/storage.mligo#L38">here</a> in the camligo.</li>
+</ul>
 <h3 id="version-032"><a class="header" href="#version-032">Version 0.3.2</a></h3>
 <p>To align with TZIP-27, TzSafe team offers several proposed models for integration. For more detailed information, please refer to <a href="https://forum.tezosagora.org/t/tzsafe-and-proof-of-event-with-demos/5672">this link</a>. We have chosen to implement the &quot;PoE as an executed action&quot; model, and we will maintain the usage of the term &quot;actions&quot; as a way to distinguish them from Tezos' standard transactions.</p>
 <p>💡 Transactions approved through the owners' consensus are referred to as &quot;actions&quot; to differentiate the term from Tezos' standard transactions.</p>
@@ -457,6 +459,19 @@ Everything at the top-level was executed.
 <p>In contrast to version ≥ 0.3.1, the entrypoints and their parameters are self-explanatory and presented in readable types, ensuring a user-friendly interaction with them on Better-Call Dev for developing.</p>
 <p>Events are still emitted when proposals are created, signed, and resolved. It's important to note that there is no proof emitted to conform to the TZIP-27 standard.</p>
 <p>Please note that there is a legacy proposal content, <code>execute</code> of <code>create_proposal</code>, in the contract. The legacy proposal content functions the same as <code>transfer</code>. The <code>execute</code> was designed to be able to customizabled the type when users generate contracts, allowing the wallet to call other specific contracts. In some cases, if the wallet consistently interacts with a specific contract, this can save on storage and gas fees. Now, we are inclined to use <code>execute_lambda</code> to replace <code>execute</code>, so the <code>execute</code> version has been removed in version ≥ 0.3.1.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="logging-in-using-tzsafe-app"><a class="header" href="#logging-in-using-tzsafe-app">Logging in Using TzSafe App</a></h1>
+<p><img src="guides/../assets/image-80.png" alt="" /></p>
+<p>As of now, the configuration for the TzSafe app hasn't been committed to the beacon-sdk repository. For those who want to quickly try interacting with the TzSafe app through a dApp, please follow these steps:</p>
+<pre><code class="language-bash">&gt; git clone git@github.com:marigold-dev/beacon-sdk.git
+&gt; npm i
+&gt; python -m http.server --directory ./examples
+</code></pre>
+<ol>
+<li>Open your browser.</li>
+<li>Go to the Example Dapp: http://localhost:8000/dapp.html.</li>
+<li>Click on &quot;Request Permission.&quot;</li>
+<li>Select &quot;TzSafe&quot; and enjoy!</li>
+</ol>
 
                     </main>
 
