@@ -1,4 +1,4 @@
-# Understand the Entrypoint and the Proof
+# Understand Entrypoint
 
 TzSafe, a multisig wallet, is created using a smart contract. The TzSafe application, [TzSafe UI](https://tzsafe.marigold.dev), offers a user-friendly interface for interacting with wallets. If users wish to develop their own smart contract to interact with TzSafe, understanding the entrypoints of the wallets is crucial. This section will introduce the entrypoints of TzSafe in different versions. We'll use Better-Call Dev as an example to demonstrate.
 
@@ -9,9 +9,18 @@ To determine the version of TzSafes:
 ![](../assets/image-70.png)
 
 ## Version ≥0.3.x
-- Beginning with version 0.3.0, wallets can generate proof.
-- Beginning with version 0.3.0, wallets will free up storage space upon the resolution of proposals, leading to savings on storage fees for subsequent proposal creations. Please be aware of security issue: the newly added entrypoint for updating metadata does not check ownership, which means that anyone can modify the wallet's metadata.
+- In version 0.3.3, parameter of entrypoints are self-explanatory, and the proof has been temporarily removed for redesign
 - Beginning with version 0.3.2, wallets now support two new types of proposals: `add_or_update_metadata` and `remove_metadata`. Please note that this support is available only in the contract, not in the TzSafe UI.
+- Beginning with version 0.3.1, wallets will free up storage space upon the resolution of proposals, leading to savings on storage fees for subsequent proposal creations. Please be aware of security issue: the newly added entrypoint for updating metadata does not check ownership, which means that anyone can modify the wallet's metadata.
+- Beginning with version 0.3.0, wallets can generate proof.
+
+### Version 0.3.3
+Beginning with this version, entrypoint parameters are self-explanatory, enabling users to easily interact wth Better-Call Dev.
+
+Once creating the proposal, users can find the proposal ID in an emitted event with the tag **`%create_proposal`**. This ID can be used for signing and resolving the proposal. Upon resolution, the proposal is removed from the contract storage. Users can retrieve the full history from the emitted event with the tag **`%archive_proposal`**, and the event's content is in bytes. Here is the type for unpacking it.
+    - [here](https://github.com/marigold-dev/tzsafe-ui/blob/v0.42.0-rc.0/types/Proposal0_3_3.ts#L44) in JSON format.
+    - [here](https://github.com/marigold-dev/tzsafe/blob/0.3.3/src/internal/storage.mligo#L38) in the camligo.
+
 
 ### Version 0.3.2
 To align with TZIP-27, TzSafe team offers several proposed models for integration. For more detailed information, please refer to [this link](https://forum.tezosagora.org/t/tzsafe-and-proof-of-event-with-demos/5672). We have chosen to implement the "PoE as an executed action" model, and we will maintain the usage of the term "actions" as a way to distinguish them from Tezos' standard transactions.
@@ -44,7 +53,7 @@ This event includes two pieces of information that we'll need them to sign and r
 
 - **`challenge_id`**: This represents a unique ID for each proposal, presented in bytes. With each new proposal, the ID increases by one.
 - **`payload`**: This contains the proposal's content but is encoded in Michelson's **`pack`**. If we  **`unpack`** the payload, it should match the input parameter. However, typically, there's no need to **`unpack`**. If the need does arise, we must specify the type, which can be found either:
-    - [here](https://github.com/marigold-dev/tzsafe-ui/blob/v0.38.0/types/Proposal0_3_1.ts#L164) in JSON format.
+    - [here](https://github.com/marigold-dev/tzsafe-ui/blob/v0.38.0/types/Proposal0_3_2.ts#L164) in JSON format.
     - [here](https://github.com/marigold-dev/tzsafe/blob/0.3.2/src/internal/proposal_content.mligo#L19) in the camligo. Please note that you need to include this type in the list, as illustrated in the example below.
 
 Here's an example of using **`unpack`** in the camligo:
