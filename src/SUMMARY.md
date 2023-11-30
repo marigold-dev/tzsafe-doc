@@ -8,4 +8,5 @@
   * [Sign, Reject and Resolve Proposals](guides/sign-reject-and-resolve-proposals.md)
   * [Setting](guides/setting.md)
 * [Developer DOC]()
-  * [Understand the Entrypoint and the Proof](guides/understand-entrypoint-and-proof-of-tzsafe.md)
+  * [Understand the Entrypoint](guides/understand-entrypoint.md)
+  * [Login using TzSafe app](guides/login-using-tzsafe-app.md)

@@ -18,8 +18,8 @@ To determine the version of TzSafes:
 Beginning with this version, entrypoint parameters are self-explanatory, enabling users to easily interact wth Better-Call Dev.
 
 Once creating the proposal, users can find the proposal ID in an emitted event with the tag **`%create_proposal`**. This ID can be used for signing and resolving the proposal. Upon resolution, the proposal is removed from the contract storage. Users can retrieve the full history from the emitted event with the tag **`%archive_proposal`**, and the event's content is in bytes. Here is the type for unpacking it.
-    - [here](https://github.com/marigold-dev/tzsafe-ui/blob/v0.42.0-rc.0/types/Proposal0_3_3.ts#L44) in JSON format.
-    - [here](https://github.com/marigold-dev/tzsafe/blob/0.3.3/src/internal/storage.mligo#L38) in the camligo.
+  - [here](https://github.com/marigold-dev/tzsafe-ui/blob/v0.42.0-rc.0/types/Proposal0_3_3.ts#L44) in JSON format.
+  - [here](https://github.com/marigold-dev/tzsafe/blob/0.3.3/src/internal/storage.mligo#L38) in the camligo.
 
 
 ### Version 0.3.2
