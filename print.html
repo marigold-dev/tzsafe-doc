@@ -461,17 +461,15 @@ Everything at the top-level was executed.
 <p>Please note that there is a legacy proposal content, <code>execute</code> of <code>create_proposal</code>, in the contract. The legacy proposal content functions the same as <code>transfer</code>. The <code>execute</code> was designed to be able to customizabled the type when users generate contracts, allowing the wallet to call other specific contracts. In some cases, if the wallet consistently interacts with a specific contract, this can save on storage and gas fees. Now, we are inclined to use <code>execute_lambda</code> to replace <code>execute</code>, so the <code>execute</code> version has been removed in version ≥ 0.3.1.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="logging-in-using-tzsafe-app"><a class="header" href="#logging-in-using-tzsafe-app">Logging in Using TzSafe App</a></h1>
 <p><img src="guides/../assets/image-80.png" alt="" /></p>
-<p>As of now, the configuration for the TzSafe app hasn't been committed to the beacon-sdk repository. For those who want to quickly try interacting with the TzSafe app through a dApp, please follow these steps:</p>
-<pre><code class="language-bash">&gt; git clone git@github.com:marigold-dev/beacon-sdk.git
-&gt; npm i
-&gt; python -m http.server --directory ./examples
-</code></pre>
-<ol>
-<li>Open your browser.</li>
-<li>Go to the Example Dapp: http://localhost:8000/dapp.html.</li>
-<li>Click on &quot;Request Permission.&quot;</li>
-<li>Select &quot;TzSafe&quot; and enjoy!</li>
-</ol>
+<h2 id="dapp-requirements"><a class="header" href="#dapp-requirements">DApp Requirements</a></h2>
+<ul>
+<li>Beacon SDK version 4.1.0 or higher.</li>
+<li>For DApps utilizing the Taquito library, version 17.5.2 or higher is required.</li>
+</ul>
+<h2 id="demo-dapp-example"><a class="header" href="#demo-dapp-example">Demo DApp Example</a></h2>
+<ul>
+<li>see example <a href="https://github.com/marigold-dev/example-dapp-with-tzsafe">here</a></li>
+</ul>
 
                     </main>
 
